@@ -1,13 +1,11 @@
-from app.db import create_app, db
+from app.db import  db
 from app.models import Profile, Skill, Project, Links
 
+def seed_if_empty():
+    # If profile exists, assume DB is already seeded
+    if Profile.query.first():
+        return
 
-app = create_app()
-
-with app.app_context():
-    # Reset DB for clean seed
-    db.drop_all()
-    db.create_all()
 
     # Profile
     profile = Profile(
