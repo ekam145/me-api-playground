@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Me API Playground</title>
+</head>
+<body>
+  <h2>Search Projects by Skill</h2>
+
+  <input id="skill" placeholder="python / flask / sql" />
+  <button onclick="search()">Search</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    function search() {
+      const skill = document.getElementById("skill").value;
+      fetch(`/projects?skill=${skill}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("output").innerText =
+            JSON.stringify(data, null, 2);
+        });
+    }
+  </script>
+</body>
+</html>
+
